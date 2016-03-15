@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM ubuntu
 
 # Install base packages
 RUN apt-get update && \
