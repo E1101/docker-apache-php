@@ -31,6 +31,7 @@ RUN chmod 755 /*.sh
 # Configure www/html folder with sample app
 RUN rm -rf /var/www
 ADD www/ /var/www/
+RUN chown www-data:www-data /var/www/ -R
 VOLUME www /var/www
 
 EXPOSE 80

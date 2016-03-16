@@ -1,5 +1,5 @@
 #!/bin/bash
-chown www-data:www-data /var/www/ -R
+# chown www-data:www-data /var/www/ -R
 
 if [ "$ALLOW_OVERRIDE" = "False" ]; then
     unset ALLOW_OVERRIDE
