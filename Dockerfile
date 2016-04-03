@@ -1,11 +1,18 @@
-FROM ubuntu
+# --------------------------------------------------------------------
+# | Usage Rec:
+# | docker run --name web-app --publish 80:8080 --volume $(pwd):/var/ --detach
+# |
+# | 
+# | 
+# |
+
+FROM ubuntu:latest
 
 MAINTAINER Payam Naderi <naderi.payam@gmail.com>
 
 # Install base packages
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -yq install \
-        curl \
         apache2 \
         libapache2-mod-php5 \
         php5-mysql \
@@ -13,10 +20,8 @@ RUN apt-get update && \
         php5-gd \
         php5-curl \
         php-pear \
-        php-apc \
-	git && \
-    rm -rf /var/lib/apt/lists/* && \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+        php-apc && \
+    rm -rf /var/lib/apt/lists/*
 RUN /usr/sbin/php5enmod mcrypt
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
     sed -i "s/variables_order.*/variables_order = \"EGPCS\"/g" /etc/php5/apache2/php.ini
@@ -29,10 +34,11 @@ ADD run.sh /run.sh
 RUN chmod 755 /*.sh
 
 # Configure www/html folder with sample app
-RUN rm -rf /var/www
-ADD www/ /var/www/
-RUN chown www-data:www-data /var/www/ -R
-VOLUME www /var/www
+RUN rm -rf /var/www && \
+    mkdir /var/www
+COPY www/ /var/www
+VOLUME /var/www
 
 EXPOSE 80
 CMD ["/run.sh"]
+
