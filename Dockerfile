@@ -1,6 +1,6 @@
 # --------------------------------------------------------------------
 # | Usage Rec:
-# | docker run --name web-app --publish 80:8080 --volume $(pwd):/var/ --detach
+# | docker run --name web-app --publish 808:80 --volume $(pwd):/var/www/html --detach
 # |
 # | 
 # | 
