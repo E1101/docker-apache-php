@@ -36,7 +36,8 @@ RUN chmod 755 /*.sh
 # Configure www/html folder with sample app
 RUN rm -rf /var/www && \
     mkdir /var/www
-COPY www/ /var/www
+# Copy default/php test content
+COPY www/ /var/www 
 VOLUME /var/www
 
 EXPOSE 80
