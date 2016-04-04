@@ -18,3 +18,5 @@ mount volume can set on this location
 
 TODO:
 
+- usage example and alias defination
+- run individual php file passed by cmd argument
