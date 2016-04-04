@@ -8,7 +8,7 @@ else
     a2enmod rewrite
 fi
 
-if [[ -d "/var/www/public" && ! -L "/var/www/html" ]]; then
+if [[ -d "/var/www/public" && !(-L "/var/www/html" || -d "/var/www/html") ]]; then
   ln -s /var/www/public /var/www/html
 fi
 
