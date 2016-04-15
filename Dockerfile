@@ -31,7 +31,7 @@ ENV ALLOW_OVERRIDE True ## enable mod_rewrite/AllowOverride
 
 # Add image configuration and scripts
 ADD run.sh /run.sh
-RUN chmod 755 /*.sh \
+RUN chmod 755 /*.sh && \
     sed -i -e 's/\r$//' /run.sh
 
 # Configure www/html folder with sample app
